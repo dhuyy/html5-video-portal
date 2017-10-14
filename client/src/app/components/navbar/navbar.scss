@@ -1,17 +1,50 @@
-.acme-navbar-text{
-  color: white;
-}
-
-a {
-  color: black;
-}
-
-h1 {
-  font-size: 2em;
-  margin: 0;
-  line-height: 1.25em;
-}
-
-a:hover, a:focus {
-  color: greenyellow;
+.crossover-navbar {
+  background-color: white;
+  border-radius: 0;
+  margin-bottom: 0;
+  
+  .navbar-header {
+    height: 78px;
+    
+    .navbar-brand {
+      margin-left: 30px;
+      margin-top: 19px;
+      padding: 0;
+      
+      > img {
+        height: 40px;
+      }
+    }
+  }
+  
+  .navbar-toggle {
+    margin-right: 30px;
+    margin-top: 22px;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  .navbar-nav {
+    > li {
+      > a {
+        text-align: center;
+      }
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .navbar-nav {
+      margin-right: 30px;
+    }
+    
+    .navbar-nav {
+      > li {
+        > a {
+          padding: 0;
+          margin-top: 29px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

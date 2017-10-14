@@ -3,8 +3,6 @@
   'use strict';
 
   angular
-    .module('crossoverAssignment')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .module('crossoverAssignment');
 
 })();
