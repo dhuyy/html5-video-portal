@@ -33,7 +33,7 @@ routes(app);
 // serve video files.
 app.use('/videos',express.static('videos'));
 // serve client side code.
-app.use('/',express.static('client'));
+app.use('/',express.static('client/dist'));
 
 //Finally starting the listener
 app.listen(configs.applicationPort, function () {
