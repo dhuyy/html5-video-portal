@@ -2,9 +2,9 @@
   <div class="account-wall">
     <img class="profile-img" src="../../assets/images/avatar.png"
          alt="">
-    <form class="form-login">
-      <input type="text" class="form-control" placeholder="Username" required autofocus>
-      <input type="password" class="form-control" placeholder="Password" required>
+    <form class="form-login" ng-submit="vm.auth(vm.username, vm.password)">
+      <input type="text" class="form-control" placeholder="Username" ng-model="vm.username" required autofocus>
+      <input type="password" class="form-control" placeholder="Password" ng-model="vm.password" required>
       <input type="submit" class="btn btn-lg btn-info btn-block btn-login" value="Log In" />
     </form>
   </div>

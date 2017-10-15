@@ -8,6 +8,7 @@
       'ngMessages',
       'ngAria',
       'ui.router',
+      'angular-md5',
       'toastr'
     ]);
 

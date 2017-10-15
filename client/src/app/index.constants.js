@@ -2,6 +2,9 @@
   'use strict';
 
   angular
-    .module('crossoverAssignment');
+    .module('crossoverAssignment')
+    .constant('SERVER', {
+      'ADDRESS': 'http://localhost:3000'
+    });
 
 })();
