@@ -9,7 +9,8 @@
   function AuthService($http, md5, SERVER, localStorageService) {
     var factory = {
       auth: auth,
-      logout: logout
+      logout: logout,
+      isLogged: isLogged
     };
     return factory;
 
@@ -27,10 +28,14 @@
       })
     }
 
+    function isLogged() {
+      return !!localStorageService.get('sessionId');
+    }
+
     function logout() {
       return $http({
         method: 'GET',
-        url: SERVER.ADDRESS + '/user/auth',
+        url: SERVER.ADDRESS + '/user/logout',
         headers: {
           'Content-Type': 'application/json'
         },

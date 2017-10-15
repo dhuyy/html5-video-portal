@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($state, $rootScope, localStorageService) {
+  function runBlock($state, $rootScope, localStorageService, AuthService) {
     /*
      * Session management (check if session is still valid)
      */
@@ -19,6 +19,13 @@
         }
       })
     ;
+
+    /*
+    * Check if sessionId exists
+     */
+    $rootScope.isLogged = function() {
+      return AuthService.isLogged();
+    }
   }
 
 })();
