@@ -20,8 +20,7 @@ function listFiles() {
     .concat([
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
-      path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
+      path.join(conf.paths.src, '/**/*.spec.js')
     ])
     .concat(pathSrcHtml);
 
@@ -58,7 +57,7 @@ module.exports = function(config) {
     frameworks: ['phantomjs-shim', 'jasmine', 'angular-filesort'],
 
     angularFilesort: {
-      whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
+      whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec).js')]
     },
 
     browsers : ['PhantomJS'],

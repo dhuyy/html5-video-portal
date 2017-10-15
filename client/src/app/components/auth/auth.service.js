@@ -3,7 +3,7 @@
 
   angular
     .module('crossoverAssignment')
-    .service('AuthService', AuthService);
+    .factory('AuthService', AuthService);
 
   /** @ngInject */
   function AuthService($http, md5, SERVER) {

@@ -4,7 +4,7 @@
   /**
    * Unit testing AuthService
    */
-  describe('service auth', function() {
+  describe('[AuthService]', function() {
     var authService, httpBackend, serverAddress;
 
     beforeEach(module('crossoverAssignment'));
@@ -14,7 +14,7 @@
       serverAddress = _SERVER_.ADDRESS;
     }));
 
-    it('should authenticate an user', function() {
+    it('should authenticate an user when promise is resolved', function() {
       httpBackend.when('POST', serverAddress + '/user/auth').respond(200, {
         "status": "success",
         "sessionId": "XSZ7pv4it1rMaEYK8FWe6oEDvpMSyuIK",
@@ -35,7 +35,7 @@
 
     });
 
-    it('should logout an user', function() {
+    it('should logout an user when promise is resolved', function() {
       httpBackend.when('GET', serverAddress + '/user/logout?sessionId=a8t9Rr9bjWD2InfeFLbNS3FNg5mnFqiV').respond(200, {
         "status": "success"
       });

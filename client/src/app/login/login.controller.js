@@ -13,12 +13,12 @@
 
     function auth(username, password) {
       AuthService.auth(username, password)
-        .success(function(response) {
-          localStorageService.set('sessionId', response.sessionId);
+        .then(function(response) {
+          localStorageService.set('sessionId', response.data.sessionId);
 
           $state.go('main');
         })
-        .error(function() {
+        .catch(function() {
           // TODO create error callback
         })
       ;

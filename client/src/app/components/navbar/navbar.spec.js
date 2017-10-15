@@ -4,7 +4,7 @@
   /**
    * Unit testing crossoverNavbar component
    */
-  describe('component crossoverNavbar', function() {
+  describe('[CrossoverNavbar Component]', function() {
     var rootScope, scope, controller, element;
 
     beforeEach(module('crossoverAssignment'));

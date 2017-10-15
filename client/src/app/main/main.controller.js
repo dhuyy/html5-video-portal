@@ -7,17 +7,25 @@
 
   /** @ngInject */
   function MainController($scope, $state, localStorageService, AuthService) {
+    var vm = this;
+
+    vm.logout = logout;
+
     $scope.$on('logout', function() {
+      vm.logout();
+    });
+
+    function logout() {
       AuthService.logout(localStorageService.get('sessionId'))
-        .success(function() {
+        .then(function() {
           localStorageService.remove('sessionId');
 
           $state.go('login');
         })
-        .error(function() {
+        .catch(function() {
           // TODO create error callback
         })
       ;
-    })
+    }
   }
 })();
