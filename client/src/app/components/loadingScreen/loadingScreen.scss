@@ -1,0 +1,33 @@
+.loading-screen {
+  position: relative;
+  
+  .loading-container {
+    bottom: 0;
+    left: 0;
+    opacity: 1.0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999999;
+  }
+  
+  .loading-container.ng-leave {
+    opacity: 1.0;
+    transition: all linear 200ms;
+  }
+  
+  .loading-container.ng-leave-active {
+    opacity: 0;
+  }
+  
+  .loading-animation {
+    width: 128px;
+    height: 128px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -64px;
+    margin-left: -64px;
+    background: url("../../../assets/images/preloader.gif");
+  }
+}

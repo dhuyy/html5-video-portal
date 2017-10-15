@@ -2,6 +2,17 @@
   'use strict';
 
   angular
-    .module('crossoverAssignment', ['ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'toastr']);
+    .module('crossoverAssignment', [
+      'ngAnimate',
+      'ngSanitize',
+      'ngMessages',
+      'ngAria',
+      'ui.router',
+      'toastr'
+    ]);
+
+  setTimeout(function() {
+    angular.bootstrap(document, ['crossoverAssignment']);
+  }, 2000);
 
 })();
