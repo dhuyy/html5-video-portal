@@ -2,17 +2,12 @@
   'use strict';
 
   /**
-   * @todo Complete the test
-   * This example is not perfect.
-   * Test should check if MomentJS have been called
+   * Unit testing crossoverNavbar component
    */
   describe('component crossoverNavbar', function() {
-    beforeEach(module('crossoverAssignment'));
+    var rootScope, scope, controller, element;
 
-    var element;
-    var rootScope;
-    var scope;
-    var controller;
+    beforeEach(module('crossoverAssignment'));
     beforeEach(inject(function($compile, $rootScope) {
       rootScope = $rootScope;
       scope = $rootScope.$new();

@@ -7,6 +7,7 @@
       'ngAnimate',
       'ngSanitize',
       'ngMessages',
+      'ngMock',
       'LocalStorageModule',
       'ngAria',
       'ui.router',

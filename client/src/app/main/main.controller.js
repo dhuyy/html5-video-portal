@@ -8,7 +8,7 @@
   /** @ngInject */
   function MainController($scope, $state, localStorageService, AuthService) {
     $scope.$on('logout', function() {
-      AuthService.logout()
+      AuthService.logout(localStorageService.get('sessionId'))
         .success(function() {
           localStorageService.remove('sessionId');
 
