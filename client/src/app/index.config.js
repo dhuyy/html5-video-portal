@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider, toastrConfig, localStorageServiceProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -16,6 +16,12 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+
+    // Set prefix to avoid overwriting any local storage variables
+    localStorageServiceProvider.setPrefix('crossOver');
+
+    // Disable using cookies as default if localStorage is not supported
+    localStorageServiceProvider.setDefaultToCookie(false);
   }
 
 })();

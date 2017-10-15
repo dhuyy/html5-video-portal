@@ -6,6 +6,7 @@
       'ngAnimate',
       'ngSanitize',
       'ngMessages',
+      'LocalStorageModule',
       'ngAria',
       'ui.router',
       'angular-md5',

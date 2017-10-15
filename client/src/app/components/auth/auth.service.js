@@ -3,12 +3,13 @@
 
   angular
     .module('crossoverAssignment')
-    .factory('LoginService', LoginService);
+    .factory('AuthService', AuthService);
 
   /** @ngInject */
-  function LoginService($http, md5, SERVER) {
+  function AuthService($http, md5, SERVER, localStorageService) {
     var factory = {
-      auth: auth
+      auth: auth,
+      logout: logout
     };
     return factory;
 
@@ -23,6 +24,17 @@
           username: username,
           password: md5.createHash(password)
         }
+      })
+    }
+
+    function logout() {
+      return $http({
+        method: 'GET',
+        url: SERVER.ADDRESS + '/user/auth',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        params: { sessionId: localStorageService.get('sessionId') }
       })
     }
   }
