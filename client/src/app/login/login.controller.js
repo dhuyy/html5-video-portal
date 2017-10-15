@@ -7,7 +7,9 @@
 
   /** @ngInject */
   function LoginController($state, AuthService, localStorageService) {
-    this.auth = auth;
+    var vm = this;
+
+    vm.auth = auth;
 
     function auth(username, password) {
       AuthService.auth(username, password)
@@ -16,8 +18,8 @@
 
           $state.go('main');
         })
-        .error(function(error, code) {
-          console.log(error, code);
+        .error(function() {
+          // TODO create error callback
         })
       ;
     }

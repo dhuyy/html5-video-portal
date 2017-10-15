@@ -10,7 +10,7 @@
     /*
      * Session management (check if session is still valid)
      */
-    $rootScope.$on('$stateChangeSuccess',
+    var onStateChangeSuccess = $rootScope.$on('$stateChangeSuccess',
       function(event, toState) {
         if (toState.permission === 'private') {
           if (!localStorageService.get('sessionId')) {
@@ -19,6 +19,7 @@
         }
       })
     ;
+    $rootScope.$on('$destroy', onStateChangeSuccess);
 
     /*
     * Check if sessionId exists

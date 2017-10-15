@@ -1,3 +1,4 @@
+/* eslint angular/timeout-service: 0 */
 (function() {
   'use strict';
 

@@ -7,8 +7,6 @@
 
   /** @ngInject */
   function MainController($scope, $state, localStorageService, AuthService) {
-    var vm = this;
-
     $scope.$on('logout', function() {
       AuthService.logout()
         .success(function() {
@@ -16,8 +14,8 @@
 
           $state.go('login');
         })
-        .error(function(error, code) {
-          console.log(error, code);
+        .error(function() {
+          // TODO create error callback
         })
       ;
     })
