@@ -2,18 +2,18 @@
   'use strict';
 
   /** @ngInject */
-  var crossoverVideoDetail = {
+  var videoPlayer = {
     bindings: {
       title: '@'
     },
     controller: function () {
 
     },
-    templateUrl: 'app/components/videoDetail/videoDetail.html'
+    templateUrl: 'app/components/videoPlayer/videoPlayer.html'
   };
 
   angular
     .module('crossoverAssignment')
-    .component('crossoverVideoDetail', crossoverVideoDetail);
+    .component('videoPlayer', videoPlayer);
 
 })();

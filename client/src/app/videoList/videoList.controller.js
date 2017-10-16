@@ -3,10 +3,10 @@
 
   angular
     .module('crossoverAssignment')
-    .controller('MainController', MainController);
+    .controller('VideoListController', VideoListController);
 
   /** @ngInject */
-  function MainController($scope, $timeout, $state, localStorageService, AuthService, VideoService) {
+  function VideoListController($scope, $timeout, $state, localStorageService, AuthService, VideoService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 10;

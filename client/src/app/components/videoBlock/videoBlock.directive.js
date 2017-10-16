@@ -4,10 +4,10 @@
 
   angular
     .module('crossoverAssignment')
-    .directive('crossoverVideo', crossoverVideo);
+    .directive('videoBlock', videoBlock);
 
   /** @ngInject */
-  function crossoverVideo(SERVER) {
+  function videoBlock(SERVER) {
     return {
       restrict: 'E',
       bindToController: {
@@ -47,7 +47,7 @@
 
         $ctrl.goToDetail = function() {
           $state.go('videoDetail');
-        }
+        };
 
         $ctrl.onInit = function() {
           setVideoRating();
@@ -55,8 +55,8 @@
         }
       },
       controllerAs: '$ctrl',
-      templateUrl: 'app/components/video/video.html',
-      link: function(scope, el, attrs, ctrl) {
+      templateUrl: 'app/components/videoBlock/videoBlock.html',
+      link: function(scope, el) {
         function onPlayVideo() {
           var video = angular.element(el).find('video');
 

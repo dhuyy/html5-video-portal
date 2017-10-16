@@ -1,13 +1,13 @@
-<div class="main-page">
+<div class="video-list-page">
   <div class="video-list" ng-init="vm.onInit()">
     <div class="video-wrapper" ng-repeat="video in vm.videos">
-      <crossover-video
+      <video-block
         video-id="video._id"
         name="video.name"
         description="video.description"
         url="video.url"
         ratings="video.ratings">
-      </crossover-video>
+      </video-block>
     </div>
   </div>
   <div id="video-list-end">

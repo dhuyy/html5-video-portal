@@ -27,7 +27,7 @@
       expect(AuthService.auth).toHaveBeenCalled();
     });
 
-    it('should store sessionId in LocalStorage and redirect to / when AuthService.auth promise is resolved', function() {
+    it('should store sessionId in LocalStorage and redirect to /videoList when AuthService.auth promise is resolved', function() {
       var sessionId = 'XSZ7pv4it1rMaEYK8FWe6oEDvpMSyzuIK';
 
       $controller.auth();
@@ -41,7 +41,7 @@
       $rootScope.$digest();
 
       expect(localStorageService.get('sessionId')).toEqual(sessionId);
-      expect($state.current.url).toEqual('/');
+      expect($state.current.url).toEqual('/videoList');
     });
 
   });

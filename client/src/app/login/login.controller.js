@@ -16,7 +16,7 @@
         .then(function(response) {
           localStorageService.set('sessionId', response.data.sessionId);
 
-          $state.go('main');
+          $state.go('videoList');
         })
         .catch(function() {
           // TODO create error callback

@@ -3,10 +3,10 @@
 
   angular
     .module('crossoverAssignment')
-    .controller('DetailController', DetailController);
+    .controller('VideoDetailController', VideoDetailController);
 
   /** @ngInject */
-  function DetailController() {
+  function VideoDetailController() {
 
   }
 })();

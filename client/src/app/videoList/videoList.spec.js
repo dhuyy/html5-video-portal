@@ -2,9 +2,9 @@
   'use strict';
 
   /**
-   * Unit testing MainController
+   * Unit testing VideoListController
    */
-  describe('[MainController]', function() {
+  describe('[VideoListController]', function() {
     var AuthService, VideoService, $scope, $q, $rootScope, $controller, $state, logoutDeferred, getVideosDeferred,
       localStorageService;
 
@@ -26,14 +26,14 @@
       spyOn(AuthService, 'logout').and.returnValue(logoutDeferred.promise);
       spyOn(VideoService, 'getVideos').and.returnValue(getVideosDeferred.promise);
 
-      $controller = _$controller_('MainController', {
+      $controller = _$controller_('VideoListController', {
         $scope: $scope,
         AuthService: AuthService,
         VideoService: VideoService
       })
     }));
 
-    it('should invoke MainController.getVideos when MainController.onInit is invoked', function() {
+    it('should invoke VideoListController.getVideos when VideoListController.onInit is invoked', function() {
       spyOn($controller, 'getVideos');
 
       $controller.onInit();
@@ -41,12 +41,12 @@
       expect($controller.getVideos).toHaveBeenCalled();
     });
 
-    it('should ensure that AuthService.logout is called when MainController.logout is invoked', function() {
+    it('should ensure that AuthService.logout is called when VideoListController.logout is invoked', function() {
       $controller.logout();
       expect(AuthService.logout).toHaveBeenCalled();
     });
 
-    it('should ensure that VideoService.getVideos is called when MainController.getVideos is invoked', function() {
+    it('should ensure that VideoService.getVideos is called when VideoListController.getVideos is invoked', function() {
       $controller.getVideos();
       expect(VideoService.getVideos).toHaveBeenCalled();
     });
@@ -67,7 +67,7 @@
       expect($state.current.url).toEqual('/login');
     });
 
-    it('should set MainController.videos variable when VideoService.getVideos promise is resolved',
+    it('should set VideoListController.videos variable when VideoService.getVideos promise is resolved',
       function() {
       $controller.getVideos();
 

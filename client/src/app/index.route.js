@@ -8,13 +8,6 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'vm',
-        permission: 'private'
-      })
       .state('login', {
         url: '/login',
         templateUrl: 'app/login/login.html',
@@ -22,10 +15,17 @@
         controllerAs: 'vm',
         permission: 'public'
       })
+      .state('videoList', {
+        url: '/videoList',
+        templateUrl: 'app/videoList/videoList.html',
+        controller: 'VideoListController',
+        controllerAs: 'vm',
+        permission: 'private'
+      })
       .state('videoDetail', {
         url: '/videoDetail',
-        templateUrl: 'app/detail/detail.html',
-        controller: 'DetailController',
+        templateUrl: 'app/videoDetail/videoDetail.html',
+        controller: 'VideoDetailController',
         controllerAs: 'vm',
         permission: 'private'
       });
