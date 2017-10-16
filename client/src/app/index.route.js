@@ -21,6 +21,13 @@
         controller: 'LoginController',
         controllerAs: 'vm',
         permission: 'public'
+      })
+      .state('videoDetail', {
+        url: '/videoDetail',
+        templateUrl: 'app/detail/detail.html',
+        controller: 'DetailController',
+        controllerAs: 'vm',
+        permission: 'private'
       });
 
     $urlRouterProvider.otherwise('/login');

@@ -18,7 +18,7 @@
         ratings: '<'
       },
       scope: {},
-      controller: function($scope) {
+      controller: function($scope, $state) {
         var $ctrl = this;
 
         function average(array) {
@@ -43,6 +43,10 @@
 
         function setVideoUrl() {
           $ctrl.url = SERVER.ADDRESS.concat('/', $ctrl.url);
+        }
+
+        $ctrl.goToDetail = function() {
+          $state.go('videoDetail');
         }
 
         $ctrl.onInit = function() {
