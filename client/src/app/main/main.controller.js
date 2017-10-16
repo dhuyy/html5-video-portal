@@ -44,7 +44,7 @@
           vm.videos = response.data.data;
         })
         .catch(function() {
-          // TODO create error callback
+          $state.go('login');
         })
       ;
     }

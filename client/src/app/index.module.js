@@ -8,6 +8,7 @@
       'ngSanitize',
       'ngMessages',
       'LocalStorageModule',
+      'angular-input-stars',
       'ngAria',
       'ui.router',
       'angular-md5',

@@ -1,0 +1,25 @@
+<div class="crossover-video">
+  <video
+    ng-src="{{ $ctrl.url }}"
+    preload="none"
+    poster="../../../assets/images/default-thumb.png"
+    class="video-el" controls>
+  </video>
+  <div class="video-info">
+    <p class="video-name">{{ $ctrl.name }}</p>
+    <div class="video-rating-wrapper">
+      <span class="rating-label">Rating:</span>
+      <input-stars
+        allow-half
+        readonly
+        class="average-rating"
+        max="5"
+        ng-model="averageRate">
+      </input-stars>
+    </div>
+    <div class="video-description">
+      {{ $ctrl.description | truncateDescription }}
+      <a href="">Read more</a>
+    </div>
+  </div>
+</div>

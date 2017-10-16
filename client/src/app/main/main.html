@@ -1,20 +1,11 @@
-<div class="container-fluid" ng-init="vm.onInit()">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-12">
-          <h4>Featured</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <ul>
-            <li ng-repeat="video in vm.videos">
-              <p>{{ video.name }}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<div class="video-list" ng-init="vm.onInit()">
+  <div class="video-wrapper" ng-repeat="video in vm.videos">
+    <crossover-video
+      id="video._id"
+      name="video.name"
+      description="video.description"
+      url="video.url"
+      ratings="video.ratings">
+    </crossover-video>
   </div>
 </div>

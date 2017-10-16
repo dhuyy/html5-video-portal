@@ -5,3 +5,13 @@
     width: 50px;
   }
 }
+
+.video-list {
+  width: 100%;
+  max-width: 856px;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
