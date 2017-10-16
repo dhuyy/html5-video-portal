@@ -29,8 +29,7 @@
       expect(AuthService.logout).toHaveBeenCalled();
     });
 
-    it('should remove sessionId from LocalStorage and redirect to /login when AuthService.logout promise is resolved',
-      function() {
+    it('should remove sessionId from LocalStorage and redirect to /login when AuthService.logout promise is resolved', function() {
       $controller.logout();
 
       logoutMethodDeferred.resolve({

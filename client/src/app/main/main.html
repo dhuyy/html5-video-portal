@@ -1,14 +1,20 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-init="vm.onInit()">
   <div class="row">
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
-    <h1>Main Page</h1><br>
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>Featured</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <ul>
+            <li ng-repeat="video in vm.videos">
+              <p>{{ video.name }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
