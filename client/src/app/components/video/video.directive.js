@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: 0 */
 (function() {
   'use strict';
 
@@ -14,17 +15,44 @@
         name: '<',
         description: '<',
         url: '<',
-        ratings: '<',
-        value: '<'
+        ratings: '<'
       },
       scope: {},
-      controller: function() {
-        this.url = SERVER.ADDRESS.concat('/', this.url);
+      controller: function($scope) {
+        var $ctrl = this;
+
+        function average(array) {
+          var sum = array.reduce(function(total, num) {
+            return total + num;
+          });
+
+          return sum / array.length;
+        }
+
+        function round(value, step) {
+          step || (step = 1.0);
+          var inv = 1.0 / step;
+          return Math.round(value * inv) / inv;
+        }
+
+        function setVideoRating() {
+          $scope.averageRate =
+            round(average($ctrl.ratings), 0.5);
+        }
+
+        function setVideoUrl() {
+          $ctrl.url = SERVER.ADDRESS.concat('/', $ctrl.url);
+        }
+
+        $ctrl.onInit = function() {
+          setVideoRating();
+          setVideoUrl();
+        }
       },
       controllerAs: '$ctrl',
       templateUrl: 'app/components/video/video.html',
-      link: function(scope) {
-        scope.averageRate = 3.5;
+      link: function(scope, element, attrs, ctrl) {
+
       }
     }
   }

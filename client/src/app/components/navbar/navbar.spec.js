@@ -30,7 +30,7 @@
 
       var menuItem = element.find('ul.nav > li > a');
 
-      expect(menuItem.text()).toEqual('Logout');
+      expect(menuItem.text().trim()).toEqual('Logout');
     });
 
     it('should show Login option when is-logged param is falsy', function() {
@@ -39,7 +39,7 @@
 
       var menuItem = element.find('ul.nav > li > a');
 
-      expect(menuItem.text()).toEqual('Login');
+      expect(menuItem.text().trim()).toEqual('Login');
     });
 
     it('should broadcast logout event when call onClickLogout function', function() {
