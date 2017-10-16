@@ -11,7 +11,7 @@
     return {
       restrict: 'E',
       bindToController: {
-        id: '<',
+        videoId: '<',
         name: '<',
         description: '<',
         url: '<',
@@ -52,7 +52,20 @@
       controllerAs: '$ctrl',
       templateUrl: 'app/components/video/video.html',
       link: function(scope, element, attrs, ctrl) {
+        function onPlayVideo() {
+          var video = $(element).find('video');
 
+          video.on('play', function() {
+            angular.forEach($('.video-el'), function(current) {
+              if (video.get(0).id != current.id)
+                current.pause();
+            });
+          });
+        }
+
+        (function onInit() {
+          onPlayVideo()
+        })();
       }
     }
   }
