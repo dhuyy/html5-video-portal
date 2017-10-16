@@ -32,6 +32,7 @@
         function round(value, step) {
           step || (step = 1.0);
           var inv = 1.0 / step;
+
           return Math.round(value * inv) / inv;
         }
 
@@ -51,15 +52,17 @@
       },
       controllerAs: '$ctrl',
       templateUrl: 'app/components/video/video.html',
-      link: function(scope, element, attrs, ctrl) {
+      link: function(scope, el, attrs, ctrl) {
         function onPlayVideo() {
-          var video = $(element).find('video');
+          var video = angular.element(el).find('video');
 
           video.on('play', function() {
-            angular.forEach($('.video-el'), function(current) {
-              if (video.get(0).id != current.id)
+
+            angular.forEach(angular.element('.video-el'),
+              function(current) {
+                if (video.get(0).id != current.id)
                 current.pause();
-            });
+              });
           });
         }
 

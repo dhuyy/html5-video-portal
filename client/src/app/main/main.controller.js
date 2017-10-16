@@ -6,19 +6,21 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $state, localStorageService, AuthService, VideoService) {
+  function MainController($scope, $timeout, $state, localStorageService, AuthService, VideoService) {
     var vm = this;
 
-    var CHUNK_VIDEOS_TO_LOAD = 10;
+    var NUMBER_VIDEOS_TO_LOAD = 10;
+    var SHOULD_INIT_SCROLLMONITOR = true;
 
-    vm.videos = null;
+    vm.videos = [];
+    vm.showSpinner = false;
 
     vm.onInit = onInit;
     vm.logout = logout;
     vm.getVideos = getVideos;
 
     function onInit() {
-      vm.getVideos(_getSessionId(), 0, CHUNK_VIDEOS_TO_LOAD);
+      vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
 
     $scope.$on('logout', function() {
@@ -26,7 +28,7 @@
     });
 
     function logout() {
-      AuthService.logout(_getSessionId())
+      AuthService.logout(getSessionId())
         .then(function() {
           localStorageService.remove('sessionId');
 
@@ -41,7 +43,17 @@
     function getVideos(sessionId, skip, limit) {
       VideoService.getVideos(sessionId, skip, limit)
         .then(function(response) {
-          vm.videos = response.data.data;
+          vm.videos = vm.videos.concat(response.data.data);
+
+          vm.showSpinner = false;
+
+          if (SHOULD_INIT_SCROLLMONITOR) {
+            $timeout(function() {
+              initScrollMonitor();
+            });
+
+            SHOULD_INIT_SCROLLMONITOR = false;
+          }
         })
         .catch(function() {
           $state.go('login');
@@ -49,8 +61,19 @@
       ;
     }
 
-    function _getSessionId() {
+    function getSessionId() {
       return localStorageService.get('sessionId');
+    }
+
+    function initScrollMonitor() {
+      scrollMonitor
+        .create(document.getElementById('video-list-end'))
+        .enterViewport(function() {
+          if (vm.videos.length < 101)
+            vm.showSpinner = true;
+            vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
+        })
+      ;
     }
   }
 })();
