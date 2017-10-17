@@ -6,7 +6,7 @@
     .controller('VideoDetailController', VideoDetailController);
 
   /** @ngInject */
-  function VideoDetailController($scope, $stateParams, Toastr, VideoService, AuthService) {
+  function VideoDetailController($rootScope, $stateParams, Toastr, VideoService, AuthService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 5;
@@ -19,7 +19,7 @@
     vm.getVideos = getVideos;
     vm.rateVideo = rateVideo;
 
-    $scope.$on('onRatingClick', function(event, args) {
+    $rootScope.$on('onRatingClick', function(event, args) {
       vm.rateVideo(AuthService.getSessionId(), args.videoId, args.rating);
     });
 

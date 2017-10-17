@@ -9,13 +9,13 @@
       description: '@',
       url: '<'
     },
-    controller: function ($scope, SERVER) {
+    controller: function ($scope, $rootScope, SERVER) {
       this.$onChanges = function () {
         this.url = SERVER.ADDRESS.concat('/', this.url);
       };
 
       this.onRatingClick = function() {
-        $scope.$emit('onRatingClick', {
+        $rootScope.$emit('onRatingClick', {
           videoId: this.videoId,
           rating: $scope.videoRating
         });
