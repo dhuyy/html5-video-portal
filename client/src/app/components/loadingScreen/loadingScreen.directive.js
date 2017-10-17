@@ -12,13 +12,11 @@
       restrict: 'C',
       link: function(scope, element, attributes) {
         $animate.enabled(true);
-        $animate.leave(element.children().eq(0)).then(
-          function cleanupAfterAnimation() {
-            element.remove();
-            scope = element = attributes = null;
-            $animate.enabled(false);
-          }
-        );
+        $animate.leave(element.children().eq(0)).then( function() {
+          element.remove();
+          scope = element = attributes = null;
+          $animate.enabled(false);
+        });
       }
     };
 

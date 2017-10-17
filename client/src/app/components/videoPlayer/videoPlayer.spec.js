@@ -2,7 +2,7 @@
   'use strict';
 
   /**
-   * Unit testing crossoverNavbar component
+   * Unit testing videoPlayer component
    */
   describe('[VideoPlayer Component]', function() {
     var $rootScope, $scope, $controller, $element;

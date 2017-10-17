@@ -5,13 +5,12 @@
    * Unit testing VideoListController
    */
   describe('[VideoDetailController]', function() {
-    var AuthService, VideoService, Toastr, $scope, $q, $rootScope, $controller, getVideoDeferred, getVideosDeferred,
+    var VideoService, Toastr, $scope, $q, $rootScope, $controller, getVideoDeferred, getVideosDeferred,
       rateVideoDeferred;
 
     beforeEach(module('crossoverAssignment'));
-    beforeEach(inject(function(_AuthService_, _VideoService_, _$q_, _$rootScope_, _$controller_, _Toastr_) {
+    beforeEach(inject(function(_VideoService_, _$q_, _$rootScope_, _$controller_, _Toastr_) {
 
-      AuthService = _AuthService_;
       VideoService = _VideoService_;
       Toastr = _Toastr_;
       $q = _$q_;
