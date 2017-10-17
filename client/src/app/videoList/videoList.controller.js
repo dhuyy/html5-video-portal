@@ -23,6 +23,10 @@
       vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
 
+    $scope.$on('onClickVideo', function(event, args) {
+      $state.go('videoDetail', { 'id': args });
+    });
+
     $scope.$on('logout', function() {
       vm.logout();
     });

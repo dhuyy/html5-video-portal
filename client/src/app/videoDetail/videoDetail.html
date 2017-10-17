@@ -1,5 +1,18 @@
-<div class="video-detail-page">
-  <h1>Video Detail Page</h1>
+<div class="video-detail-page container-fluid" ng-init="vm.onInit()">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="video-player-wrapper">
+        <video-player
+          video-id="{{ vm.video._id }}"
+          name="{{ vm.video.name }}"
+          description="{{ vm.video.description }}"
+          url="vm.video.url"></video-player>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="side-video-list">
 
-  <video-player title="CrossoverVideoDetail"></video-player>
+      </div>
+    </div>
+  </div>
 </div>

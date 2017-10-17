@@ -23,14 +23,14 @@
         permission: 'private'
       })
       .state('videoDetail', {
-        url: '/videoDetail',
+        url: '/videoDetail/:id',
         templateUrl: 'app/videoDetail/videoDetail.html',
         controller: 'VideoDetailController',
         controllerAs: 'vm',
         permission: 'private'
       });
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/videoList');
   }
 
 })();

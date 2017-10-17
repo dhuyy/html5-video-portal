@@ -1,10 +1,10 @@
-<div class="crossover-video" ng-init="$ctrl.onInit()">
+<div class="video-block" ng-init="$ctrl.onInit()">
   <video
     id="{{ $ctrl.videoId }}"
     ng-src="{{ $ctrl.url }}"
     preload="none"
     poster="../../../assets/images/default-thumb.png"
-    class="video-el" controls>
+    class="video-block-el" controls>
   </video>
   <div class="video-info">
     <p class="video-name" ng-click="$ctrl.goToDetail()">{{ $ctrl.name }}</p>

@@ -4,10 +4,15 @@
   /** @ngInject */
   var videoPlayer = {
     bindings: {
-      title: '@'
+      videoId: '@',
+      name: '@',
+      description: '@',
+      url: '<'
     },
-    controller: function () {
-
+    controller: function (SERVER) {
+      this.$onChanges = function () {
+        this.url = SERVER.ADDRESS.concat('/', this.url);
+      }
     },
     templateUrl: 'app/components/videoPlayer/videoPlayer.html'
   };

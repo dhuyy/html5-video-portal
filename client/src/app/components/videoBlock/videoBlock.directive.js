@@ -11,14 +11,14 @@
     return {
       restrict: 'E',
       bindToController: {
-        videoId: '<',
-        name: '<',
-        description: '<',
+        videoId: '@',
+        name: '@',
+        description: '@',
         url: '<',
         ratings: '<'
       },
       scope: {},
-      controller: function($scope, $state) {
+      controller: function($scope) {
         var $ctrl = this;
 
         function average(array) {
@@ -46,7 +46,7 @@
         }
 
         $ctrl.goToDetail = function() {
-          $state.go('videoDetail');
+          $scope.$emit('onClickVideo', $ctrl.videoId)
         };
 
         $ctrl.onInit = function() {
@@ -62,7 +62,7 @@
 
           video.on('play', function() {
 
-            angular.forEach(angular.element('.video-el'),
+            angular.forEach(angular.element('.video-block-el'),
               function(current) {
                 if (video.get(0).id != current.id)
                 current.pause();

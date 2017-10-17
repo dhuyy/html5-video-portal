@@ -1,5 +1,20 @@
 .video-detail-page {
-  h1 {
-    color: red;
+  width: 100%;
+  max-width: 856px;
+  margin: 0 auto;
+  margin-top: 40px;
+  
+  .video-player-wrapper, .side-video-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .video-player-wrapper {
+    
+  }
+  
+  .side-video-list {
+    outline: 1px solid blue;
   }
 }

@@ -1,3 +1,26 @@
 <div class="video-player">
-  <h1>{{ $ctrl.title }}</h1>
+  <video
+    id="{{ $ctrl.videoId }}"
+    ng-src="{{ $ctrl.url }}"
+    preload="none"
+    poster="../../../assets/images/default-thumb.png"
+    class="video-el" controls>
+  </video>
+  <div class="video-info">
+    <p class="video-name" ng-click="$ctrl.goToDetail()">{{ $ctrl.name }}</p>
+    <div class="video-rating-wrapper">
+      <span class="rating-label">Rating</span>
+      <input-stars
+        class="average-rating"
+        max="5"
+        ng-model="averageRate">
+      </input-stars>
+    </div>
+    <div class="video-description-wrapper">
+      <span class="description-label">Description:</span>
+      <div class="video-description">
+        {{ $ctrl.description }}
+      </div>
+    </div>
+  </div>
 </div>
