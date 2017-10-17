@@ -6,7 +6,7 @@
     .controller('VideoDetailController', VideoDetailController);
 
   /** @ngInject */
-  function VideoDetailController($scope, $state, $stateParams, localStorageService, VideoService, AuthService) {
+  function VideoDetailController($scope, $state, $stateParams, Toastr, VideoService, AuthService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 5;
@@ -29,16 +29,17 @@
 
     function onInit() {
       vm.getVideo(AuthService.getSessionId(), $stateParams.id);
-      vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
 
     function getVideo(sessionId, videoId) {
       VideoService.getVideo(sessionId, videoId)
         .then(function(response) {
           vm.video = response.data.data;
+
+          vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
         })
         .catch(function() {
-          $state.go('videoList');
+          Toastr.error(null, 'Could not load video '.concat(videoId, '.'));
         })
       ;
     }
@@ -49,7 +50,7 @@
           vm.videos = vm.videos.concat(response.data.data);
         })
         .catch(function() {
-          $state.go('videoList');
+          Toastr.error(null, 'Could not load videos.');
         })
       ;
     }
@@ -57,10 +58,10 @@
     function rateVideo(sessionId, videoId, rating) {
       VideoService.rateVideo(sessionId, videoId, rating)
         .then(function() {
-          // TODO create success callback
+          Toastr.success(null, 'Vídeo rated.', { 'timeOut': 1500 });
         })
         .catch(function() {
-          // TODO create error callback
+          Toastr.error(null, 'Could not rate this video.');
         })
       ;
     }

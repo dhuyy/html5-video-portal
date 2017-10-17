@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($state, $rootScope, localStorageService, AuthService) {
+  function runBlock($state, $rootScope, Toastr, localStorageService, AuthService) {
     /*
      * Session management (check if session is still valid)
      */
@@ -15,6 +15,8 @@
         if (toState.permission === 'private') {
           if (!localStorageService.get('sessionId')) {
             $state.go('login');
+
+            Toastr.error(null, 'Not authorized. Try to sign in again.');
           }
         }
       })
@@ -34,9 +36,6 @@
           localStorageService.remove('sessionId');
 
           $state.go('login');
-        })
-        .catch(function() {
-          // TODO create error callback
         })
       ;
     })
