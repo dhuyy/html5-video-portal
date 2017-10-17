@@ -16,7 +16,6 @@
     vm.showSpinner = false;
 
     vm.onInit = onInit;
-    vm.logout = logout;
     vm.getVideos = getVideos;
 
     function onInit() {
@@ -26,23 +25,6 @@
     $scope.$on('onClickVideo', function(event, args) {
       $state.go('videoDetail', { 'id': args });
     });
-
-    $scope.$on('logout', function() {
-      vm.logout();
-    });
-
-    function logout() {
-      AuthService.logout(AuthService.getSessionId())
-        .then(function() {
-          localStorageService.remove('sessionId');
-
-          $state.go('login');
-        })
-        .catch(function() {
-          // TODO create error callback
-        })
-      ;
-    }
 
     function getVideos(sessionId, skip, limit) {
       VideoService.getVideos(sessionId, skip, limit)

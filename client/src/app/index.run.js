@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($state, $rootScope, localStorageService) {
+  function runBlock($state, $rootScope, localStorageService, AuthService) {
     /*
      * Session management (check if session is still valid)
      */
@@ -26,7 +26,20 @@
      */
     $rootScope.isLogged = function() {
       return !!localStorageService.get('sessionId');
-    }
+    };
+
+    $rootScope.$on('logout', function() {
+      AuthService.logout(AuthService.getSessionId())
+        .then(function() {
+          localStorageService.remove('sessionId');
+
+          $state.go('login');
+        })
+        .catch(function() {
+          // TODO create error callback
+        })
+      ;
+    })
   }
 
 })();

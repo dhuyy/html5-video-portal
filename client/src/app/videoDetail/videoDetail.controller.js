@@ -27,23 +27,6 @@
       vm.rateVideo(AuthService.getSessionId(), args.videoId, args.rating);
     });
 
-    $scope.$on('logout', function() {
-      vm.logout();
-    });
-
-    function logout() {
-      AuthService.logout(AuthService.getSessionId())
-        .then(function() {
-          localStorageService.remove('sessionId');
-
-          $state.go('login');
-        })
-        .catch(function() {
-          // TODO create error callback
-        })
-      ;
-    }
-
     function onInit() {
       vm.getVideo(AuthService.getSessionId(), $stateParams.id);
       vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
