@@ -30,7 +30,7 @@
         permission: 'private'
       });
 
-    $urlRouterProvider.otherwise('/videoList');
+    $urlRouterProvider.otherwise('/login');
   }
 
 })();
