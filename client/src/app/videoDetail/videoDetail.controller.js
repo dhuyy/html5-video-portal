@@ -33,7 +33,7 @@
           vm.video = response.data.data;
         })
         .catch(function() {
-          // TODO create error callback
+          $state.go('videoList');
         })
       ;
     }
@@ -44,7 +44,7 @@
           vm.videos = vm.videos.concat(response.data.data);
         })
         .catch(function() {
-          $state.go('login');
+          $state.go('videoList');
         })
       ;
     }
