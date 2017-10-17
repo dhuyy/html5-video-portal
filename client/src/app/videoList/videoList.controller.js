@@ -20,7 +20,7 @@
     vm.getVideos = getVideos;
 
     function onInit() {
-      vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
+      vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
 
     $scope.$on('onClickVideo', function(event, args) {
@@ -32,7 +32,7 @@
     });
 
     function logout() {
-      AuthService.logout(getSessionId())
+      AuthService.logout(AuthService.getSessionId())
         .then(function() {
           localStorageService.remove('sessionId');
 
@@ -65,17 +65,13 @@
       ;
     }
 
-    function getSessionId() {
-      return localStorageService.get('sessionId');
-    }
-
     function initScrollMonitor() {
       scrollMonitor
         .create(document.getElementById('video-list-end'))
         .enterViewport(function() {
           if (vm.videos.length < 101)
             vm.showSpinner = true;
-            vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
+            vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
         })
       ;
     }

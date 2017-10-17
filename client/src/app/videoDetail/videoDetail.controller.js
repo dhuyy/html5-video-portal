@@ -6,7 +6,7 @@
     .controller('VideoDetailController', VideoDetailController);
 
   /** @ngInject */
-  function VideoDetailController($scope, $state, $stateParams, localStorageService, VideoService) {
+  function VideoDetailController($scope, $state, $stateParams, localStorageService, VideoService, AuthService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 5;
@@ -24,7 +24,7 @@
     });
 
     $scope.$on('onRatingClick', function(event, args) {
-      vm.rateVideo(getSessionId(), args.videoId, args.rating);
+      vm.rateVideo(AuthService.getSessionId(), args.videoId, args.rating);
     });
 
     $scope.$on('logout', function() {
@@ -32,7 +32,7 @@
     });
 
     function logout() {
-      AuthService.logout(getSessionId())
+      AuthService.logout(AuthService.getSessionId())
         .then(function() {
           localStorageService.remove('sessionId');
 
@@ -45,8 +45,8 @@
     }
 
     function onInit() {
-      vm.getVideo(getSessionId(), $stateParams.id);
-      vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
+      vm.getVideo(AuthService.getSessionId(), $stateParams.id);
+      vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
 
     function getVideo(sessionId, videoId) {
@@ -80,10 +80,6 @@
           // TODO create error callback
         })
       ;
-    }
-
-    function getSessionId() {
-      return localStorageService.get('sessionId');
     }
   }
 })();

@@ -6,10 +6,11 @@
     .factory('AuthService', AuthService);
 
   /** @ngInject */
-  function AuthService($http, md5, SERVER) {
+  function AuthService($http, md5, SERVER, localStorageService) {
     var factory = {
       auth: auth,
-      logout: logout
+      logout: logout,
+      getSessionId: getSessionId
     };
     return factory;
 
@@ -36,6 +37,10 @@
         },
         params: { sessionId: sessionId }
       })
+    }
+
+    function getSessionId() {
+      return localStorageService.get('sessionId');
     }
   }
 })();
