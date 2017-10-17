@@ -42,12 +42,12 @@
       expect(menuItem.text().trim()).toEqual('Login');
     });
 
-    it('should broadcast logout event when call onClickLogout function', function() {
-      spyOn(rootScope, '$broadcast');
+    it('should emit logout event when call onClickLogout function', function() {
+      spyOn(rootScope, '$emit');
 
       controller.onClickLogout();
 
-      expect(rootScope.$broadcast).toHaveBeenCalledWith('logout');
+      expect(rootScope.$emit).toHaveBeenCalledWith('logout');
     });
 
   });

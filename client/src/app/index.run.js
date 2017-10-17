@@ -30,7 +30,7 @@
       return !!localStorageService.get('sessionId');
     };
 
-    $rootScope.$on('logout', function() {
+    var onLogout = $rootScope.$on('logout', function() {
       AuthService.logout(AuthService.getSessionId())
         .then(function() {
           localStorageService.remove('sessionId');
@@ -38,7 +38,13 @@
           $state.go('login');
         })
       ;
-    })
+    });
+    $rootScope.$on('$destroy', onLogout);
+
+    var onClickDetailVideo = $rootScope.$on('onClickDetailVideo', function(event, args) {
+      $state.go('videoDetail', { 'id': args });
+    });
+    $rootScope.$on('$destroy', onClickDetailVideo);
   }
 
 })();

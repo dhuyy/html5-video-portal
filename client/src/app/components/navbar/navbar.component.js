@@ -6,9 +6,9 @@
     bindings: {
       isLogged: '<'
     },
-    controller: function ($scope) {
+    controller: function ($rootScope) {
       function onClickLogout() {
-        $scope.$emit('logout');
+        $rootScope.$emit('logout');
       }
 
       this.onClickLogout = onClickLogout;

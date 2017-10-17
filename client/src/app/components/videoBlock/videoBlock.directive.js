@@ -18,8 +18,11 @@
         ratings: '<'
       },
       scope: {},
-      controller: function($scope) {
+      controller: function($scope, $rootScope) {
         var $ctrl = this;
+
+        $ctrl.average = average;
+        $ctrl.round = round;
 
         function average(array) {
           var sum = array.reduce(function(total, num) {
@@ -45,8 +48,8 @@
           $ctrl.url = SERVER.ADDRESS.concat('/', $ctrl.url);
         }
 
-        $ctrl.goToDetail = function() {
-          $scope.$emit('onClickVideo', $ctrl.videoId)
+        $ctrl.goToVideoDetail = function() {
+          $rootScope.$emit('onClickDetailVideo', $ctrl.videoId)
         };
 
         $ctrl.onInit = function() {

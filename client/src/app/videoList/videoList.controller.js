@@ -1,3 +1,4 @@
+/* eslint no-undef: 0, angular/document-service: 0 */
 (function() {
   'use strict';
 
@@ -6,7 +7,7 @@
     .controller('VideoListController', VideoListController);
 
   /** @ngInject */
-  function VideoListController($scope, $timeout, $state, Toastr, AuthService, VideoService) {
+  function VideoListController($timeout, $state, Toastr, AuthService, VideoService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 10;
@@ -21,10 +22,6 @@
     function onInit() {
       vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
-
-    $scope.$on('onClickVideo', function(event, args) {
-      $state.go('videoDetail', { 'id': args });
-    });
 
     function getVideos(sessionId, skip, limit) {
       VideoService.getVideos(sessionId, skip, limit)

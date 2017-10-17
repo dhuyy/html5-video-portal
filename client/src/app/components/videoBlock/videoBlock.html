@@ -7,7 +7,7 @@
     class="video-block-el" controls>
   </video>
   <div class="video-info">
-    <p class="video-name" ng-click="$ctrl.goToDetail()">{{ $ctrl.name }}</p>
+    <p class="video-name" ng-click="$ctrl.goToVideoDetail()">{{ $ctrl.name }}</p>
     <div class="video-rating-wrapper">
       <span class="rating-label">Rating:</span>
       <input-stars
@@ -20,7 +20,7 @@
     </div>
     <div class="video-description">
       {{ $ctrl.description | truncateDescription }}
-      <a href="" ng-click="$ctrl.goToDetail()">Read more</a>
+      <a href="" ng-click="$ctrl.goToVideoDetail()">Read more</a>
     </div>
   </div>
 </div>
