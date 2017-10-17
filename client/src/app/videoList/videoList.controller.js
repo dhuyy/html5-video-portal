@@ -43,6 +43,8 @@
         })
         .catch(function() {
           Toastr.error(null, 'Could not load videos.');
+
+          $state.go('login')
         })
       ;
     }
