@@ -10,8 +10,16 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4">
+      <hr class="separator visible-xs-block">
       <div class="side-video-list">
-
+        <video-block
+          ng-repeat="video in vm.videos"
+          video-id="{{ video._id }}"
+          name="{{ video.name }}"
+          description="{{ video.description }}"
+          url="video.url"
+          ratings="video.ratings">
+        </video-block>
       </div>
     </div>
   </div>

@@ -6,15 +6,25 @@
     .controller('VideoDetailController', VideoDetailController);
 
   /** @ngInject */
-  function VideoDetailController($stateParams, localStorageService, VideoService) {
+  function VideoDetailController($scope, $state, $stateParams, localStorageService, VideoService) {
     var vm = this;
 
+    var NUMBER_VIDEOS_TO_LOAD = 5;
+
     vm.video = null;
+    vm.videos = [];
 
     vm.onInit = onInit;
+    vm.getVideo = getVideo;
+    vm.getVideos = getVideos;
+
+    $scope.$on('onClickVideo', function(event, args) {
+      $state.go('videoDetail', { 'id': args });
+    });
 
     function onInit() {
-      getVideo(getSessionId(), $stateParams.id);
+      vm.getVideo(getSessionId(), $stateParams.id);
+      vm.getVideos(getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
 
     function getVideo(sessionId, videoId) {
@@ -24,6 +34,17 @@
         })
         .catch(function() {
           // TODO create error callback
+        })
+      ;
+    }
+
+    function getVideos(sessionId, skip, limit) {
+      VideoService.getVideos(sessionId, skip, limit)
+        .then(function(response) {
+          vm.videos = vm.videos.concat(response.data.data);
+        })
+        .catch(function() {
+          $state.go('login');
         })
       ;
     }
