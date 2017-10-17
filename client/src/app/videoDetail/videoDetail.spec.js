@@ -5,14 +5,15 @@
    * Unit testing VideoListController
    */
   describe('[VideoDetailController]', function() {
-    var AuthService, VideoService, $scope, $q, $rootScope, $controller, getVideoDeferred, getVideosDeferred,
+    var AuthService, VideoService, Toastr, $scope, $q, $rootScope, $controller, getVideoDeferred, getVideosDeferred,
       rateVideoDeferred;
 
     beforeEach(module('crossoverAssignment'));
-    beforeEach(inject(function(_AuthService_, _VideoService_, _$q_, _$rootScope_, _$controller_) {
+    beforeEach(inject(function(_AuthService_, _VideoService_, _$q_, _$rootScope_, _$controller_, _Toastr_) {
 
       AuthService = _AuthService_;
       VideoService = _VideoService_;
+      Toastr = _Toastr_;
       $q = _$q_;
       $rootScope = _$rootScope_;
       $scope = _$rootScope_.$new();
@@ -69,13 +70,15 @@
       expect($controller.videos).toEqual(jasmine.any(Array));
     });
 
-    it('should show a successfully Toast when VideoService.rateVideo promise is resolved', function() {
+    it('should show a success Toastr when VideoService.rateVideo promise is resolved', function() {
       $controller.rateVideo();
+      spyOn(Toastr, 'success');
 
-      getVideosDeferred.resolve();
+      rateVideoDeferred.resolve();
       $rootScope.$digest();
 
       expect(VideoService.rateVideo).toHaveBeenCalled();
+      expect(Toastr.success).toHaveBeenCalled();
     });
 
   });
