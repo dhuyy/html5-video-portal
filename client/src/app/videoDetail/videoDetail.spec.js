@@ -55,6 +55,16 @@
       expect($controller.video).toEqual(jasmine.any(Object));
     });
 
+    it('should show a error Toastr when VideoService.getVideo promise is resolved', function() {
+      $controller.getVideo();
+      spyOn(Toastr, 'error');
+
+      getVideoDeferred.reject();
+      $rootScope.$digest();
+
+      expect(Toastr.error).toHaveBeenCalled();
+    });
+
     it('should set Controller.videos variable when VideoService.getVideos promise is resolved', function() {
       $controller.getVideos();
 
@@ -70,6 +80,16 @@
       expect($controller.videos).toEqual(jasmine.any(Array));
     });
 
+    it('should show a error Toastr when VideoService.getVideos promise is rejected', function() {
+      $controller.getVideos();
+      spyOn(Toastr, 'error');
+
+      getVideosDeferred.reject();
+      $rootScope.$digest();
+
+      expect(Toastr.error).toHaveBeenCalled();
+    });
+
     it('should show a success Toastr when VideoService.rateVideo promise is resolved', function() {
       $controller.rateVideo();
       spyOn(Toastr, 'success');
@@ -79,6 +99,16 @@
 
       expect(VideoService.rateVideo).toHaveBeenCalled();
       expect(Toastr.success).toHaveBeenCalled();
+    });
+
+    it('should show a error Toastr when VideoService.rateVideo promise is rejected', function() {
+      $controller.rateVideo();
+      spyOn(Toastr, 'error');
+
+      rateVideoDeferred.reject();
+      $rootScope.$digest();
+
+      expect(Toastr.error).toHaveBeenCalled();
     });
 
   });
