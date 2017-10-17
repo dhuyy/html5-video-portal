@@ -13,7 +13,8 @@
       <input-stars
         class="average-rating"
         max="5"
-        ng-model="averageRate">
+        on-star-click="$ctrl.onRatingClick()"
+        ng-model="videoRating">
       </input-stars>
     </div>
     <div class="video-description-wrapper">

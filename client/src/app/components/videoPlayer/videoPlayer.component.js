@@ -9,9 +9,16 @@
       description: '@',
       url: '<'
     },
-    controller: function (SERVER) {
+    controller: function ($scope, SERVER) {
       this.$onChanges = function () {
         this.url = SERVER.ADDRESS.concat('/', this.url);
+      };
+
+      this.onRatingClick = function() {
+        $scope.$emit('onRatingClick', {
+          videoId: this.videoId,
+          rating: $scope.videoRating
+        });
       }
     },
     templateUrl: 'app/components/videoPlayer/videoPlayer.html'

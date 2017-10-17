@@ -9,7 +9,8 @@
   function VideoService($http, SERVER) {
     var factory = {
       getVideos: getVideos,
-      getVideo: getVideo
+      getVideo: getVideo,
+      rateVideo: rateVideo
     };
     return factory;
 
@@ -38,6 +39,23 @@
         params: {
           sessionId: sessionId,
           videoId: videoId
+        }
+      })
+    }
+
+    function rateVideo(sessionId, videoId, rating) {
+      return $http({
+        method: 'POST',
+        url: SERVER.ADDRESS + '/video/ratings',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        params: {
+          sessionId: sessionId
+        },
+        data: {
+          videoId: videoId,
+          rating: rating
         }
       })
     }

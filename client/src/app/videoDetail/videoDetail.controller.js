@@ -17,10 +17,32 @@
     vm.onInit = onInit;
     vm.getVideo = getVideo;
     vm.getVideos = getVideos;
+    vm.rateVideo = rateVideo;
 
     $scope.$on('onClickVideo', function(event, args) {
       $state.go('videoDetail', { 'id': args });
     });
+
+    $scope.$on('onRatingClick', function(event, args) {
+      vm.rateVideo(getSessionId(), args.videoId, args.rating);
+    });
+
+    $scope.$on('logout', function() {
+      vm.logout();
+    });
+
+    function logout() {
+      AuthService.logout(getSessionId())
+        .then(function() {
+          localStorageService.remove('sessionId');
+
+          $state.go('login');
+        })
+        .catch(function() {
+          // TODO create error callback
+        })
+      ;
+    }
 
     function onInit() {
       vm.getVideo(getSessionId(), $stateParams.id);
@@ -45,6 +67,17 @@
         })
         .catch(function() {
           $state.go('videoList');
+        })
+      ;
+    }
+
+    function rateVideo(sessionId, videoId, rating) {
+      VideoService.rateVideo(sessionId, videoId, rating)
+        .then(function() {
+          // TODO create success callback
+        })
+        .catch(function() {
+          // TODO create error callback
         })
       ;
     }
