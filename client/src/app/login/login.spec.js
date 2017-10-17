@@ -5,18 +5,20 @@
    * Unit testing LoginController
    */
   describe('[LoginController]', function() {
-    var AuthService, $q, $rootScope, $controller, $state, authMethodDeferred, localStorageService;
+    var AuthService, $q, $rootScope, $controller, $state, authMethodDeferred, localStorageService, toastr;
 
     beforeEach(module('crossoverAssignment'));
-    beforeEach(inject(function(_AuthService_, _$q_, _$rootScope_, _$controller_, _$state_, _localStorageService_) {
+    beforeEach(inject(function(_AuthService_, _$q_, _$rootScope_, _$controller_, _$state_, _localStorageService_, _toastr_) {
       AuthService = _AuthService_;
       $q = _$q_;
       $rootScope = _$rootScope_;
       $state = _$state_;
       localStorageService = _localStorageService_;
+      toastr = _toastr_;
 
       authMethodDeferred = $q.defer();
       spyOn(AuthService, 'auth').and.returnValue(authMethodDeferred.promise);
+
       $controller = _$controller_('LoginController', {
         AuthService: AuthService
       })
@@ -42,6 +44,22 @@
 
       expect(localStorageService.get('sessionId')).toEqual(sessionId);
       expect($state.current.url).toEqual('/videoList');
+    });
+
+    it('should show toastr error when AuthService.auth promise is resolved but with an error', function() {
+      spyOn(toastr, 'error');
+
+      $controller.auth();
+
+      authMethodDeferred.resolve({
+        data: {
+          status: 'error'
+        }
+      });
+
+      $rootScope.$digest();
+
+      expect(toastr.error).toHaveBeenCalled();
     });
 
   });

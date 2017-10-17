@@ -50,9 +50,10 @@
       scrollMonitor
         .create(document.getElementById('video-list-end'))
         .enterViewport(function() {
-          if (vm.videos.length < 101)
+          if (vm.videos.length < 101) {
             vm.showSpinner = true;
             vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
+          }
         })
       ;
     }
