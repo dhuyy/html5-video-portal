@@ -7,7 +7,7 @@
     .controller('VideoListController', VideoListController);
 
   /** @ngInject */
-  function VideoListController($timeout, $state, Toastr, AuthService, VideoService) {
+  function VideoListController($timeout, $state, toastr, AuthService, VideoService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 10;
@@ -39,7 +39,7 @@
           }
         })
         .catch(function() {
-          Toastr.error(null, 'Could not load videos.');
+          toastr.error(null, 'Could not load videos.');
 
           $state.go('login')
         })

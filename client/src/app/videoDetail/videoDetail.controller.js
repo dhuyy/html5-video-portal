@@ -1,3 +1,4 @@
+/* eslint angular/on-watch: 0 */
 (function() {
   'use strict';
 
@@ -6,7 +7,7 @@
     .controller('VideoDetailController', VideoDetailController);
 
   /** @ngInject */
-  function VideoDetailController($rootScope, $stateParams, Toastr, VideoService, AuthService) {
+  function VideoDetailController($stateParams, toastr, VideoService, AuthService) {
     var vm = this;
 
     var NUMBER_VIDEOS_TO_LOAD = 5;
@@ -17,11 +18,6 @@
     vm.onInit = onInit;
     vm.getVideo = getVideo;
     vm.getVideos = getVideos;
-    vm.rateVideo = rateVideo;
-
-    $rootScope.$on('onRatingClick', function(event, args) {
-      vm.rateVideo(AuthService.getSessionId(), args.videoId, args.rating);
-    });
 
     function onInit() {
       vm.getVideo(AuthService.getSessionId(), $stateParams.id);
@@ -35,7 +31,7 @@
           vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
         })
         .catch(function() {
-          Toastr.error(null, 'Could not load video '.concat(videoId, '.'));
+          toastr.error(null, 'Could not load video '.concat(videoId, '.'));
         })
       ;
     }
@@ -46,18 +42,7 @@
           vm.videos = vm.videos.concat(response.data.data);
         })
         .catch(function() {
-          Toastr.error(null, 'Could not load videos.');
-        })
-      ;
-    }
-
-    function rateVideo(sessionId, videoId, rating) {
-      VideoService.rateVideo(sessionId, videoId, rating)
-        .then(function() {
-          Toastr.success(null, 'Vídeo rated.', { 'timeOut': 1500 });
-        })
-        .catch(function() {
-          Toastr.error(null, 'Could not rate this video.');
+          toastr.error(null, 'Could not load videos.');
         })
       ;
     }

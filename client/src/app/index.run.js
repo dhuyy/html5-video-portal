@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($state, $rootScope, Toastr, localStorageService, AuthService) {
+  function runBlock($state, $rootScope, toastr, localStorageService, AuthService, VideoService) {
     /*
      * Session management (check if session is still valid)
      */
@@ -16,7 +16,7 @@
           if (!localStorageService.get('sessionId')) {
             $state.go('login');
 
-            Toastr.error(null, 'Not authorized. Try to sign in again.');
+            toastr.error(null, 'Not authorized. Try to sign in again.');
           }
         }
       })
@@ -45,6 +45,19 @@
       $state.go('videoDetail', { 'id': args });
     });
     $rootScope.$on('$destroy', onClickDetailVideo);
+
+
+    var onRatingClick = $rootScope.$on('onRatingClick', function(event, args) {
+      VideoService.rateVideo(AuthService.getSessionId(), args.videoId, args.rating)
+        .then(function() {
+          toastr.success(null, 'Vídeo rated.');
+        })
+        .catch(function() {
+          toastr.error(null, 'Could not rate this video.');
+        })
+      ;
+    });
+    $rootScope.$on('$destroy', onRatingClick);
   }
 
 })();

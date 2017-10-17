@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($state, AuthService, Toastr, localStorageService) {
+  function LoginController($state, AuthService, toastr, localStorageService) {
     var vm = this;
 
     vm.auth = auth;
@@ -15,7 +15,7 @@
       AuthService.auth(username, password)
         .then(function(response) {
           if (response.data.status == 'error') {
-            Toastr.error(null, response.data.error);
+            toastr.error(null, response.data.error);
           } else {
             localStorageService.set('sessionId', response.data.sessionId);
 
@@ -23,7 +23,7 @@
           }
         })
         .catch(function() {
-          Toastr.error(null, 'Could not connect to server. Try again later.');
+          toastr.error(null, 'Could not connect to server. Try again later.');
         })
       ;
     }
