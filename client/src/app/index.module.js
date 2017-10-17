@@ -17,6 +17,6 @@
 
   setTimeout(function() {
     angular.bootstrap(document, ['crossoverAssignment']);
-  }, 500);
+  }, 2000);
 
 })();
