@@ -14,10 +14,12 @@
 
     vm.video = null;
     vm.videos = [];
+    vm.results = [];
 
     vm.onInit = onInit;
     vm.getVideo = getVideo;
     vm.getVideos = getVideos;
+    vm.showMoreSideVideos = showMoreSideVideos;
 
     function onInit() {
       vm.getVideo(AuthService.getSessionId(), $stateParams.id);
@@ -39,16 +41,24 @@
     function getVideos(sessionId, skip, limit) {
       VideoService.getVideos(sessionId, skip, limit)
         .then(function(response) {
-          var videos = response.data.data.filter(function(element) {
+          var data = response.data.data;
+
+          vm.videos = vm.videos.concat(data);
+
+          data = data.filter(function(element) {
             return element._id != vm.video._id;
           });
 
-          vm.videos = vm.videos.concat(videos);
+          vm.results = vm.results.concat(data);
         })
         .catch(function() {
           toastr.error(null, 'Could not load videos.');
         })
       ;
+    }
+
+    function showMoreSideVideos() {
+      vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }
   }
 })();

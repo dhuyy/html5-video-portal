@@ -13,13 +13,14 @@
       <hr class="separator visible-xs-block">
       <div class="side-video-list">
         <video-block
-          ng-repeat="video in vm.videos"
+          ng-repeat="video in vm.results"
           video-id="{{ video._id }}"
           name="{{ video.name }}"
           description="{{ video.description }}"
           url="video.url"
           ratings="video.ratings">
         </video-block>
+        <button class="btn bnt-lg btn-default btn-show-more" ng-click="vm.showMoreSideVideos()">Show More</button>
       </div>
     </div>
   </div>

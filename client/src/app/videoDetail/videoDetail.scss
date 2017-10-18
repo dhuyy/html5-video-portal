@@ -18,7 +18,12 @@
   .side-video-list {
     width: 210px;
     margin: 0 auto;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
+    
+    .btn-show-more {
+      border-radius: 0;
+    }
   }
 }
