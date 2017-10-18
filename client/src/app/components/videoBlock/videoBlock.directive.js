@@ -64,8 +64,7 @@
           var video = angular.element(el).find('video');
 
           video.on('play', function() {
-
-            angular.forEach(angular.element('.video-block-el'),
+            angular.forEach(angular.element('video'),
               function(current) {
                 if (video.get(0).id != current.id)
                 current.pause();
