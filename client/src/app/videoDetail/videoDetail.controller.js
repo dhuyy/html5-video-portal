@@ -39,7 +39,11 @@
     function getVideos(sessionId, skip, limit) {
       VideoService.getVideos(sessionId, skip, limit)
         .then(function(response) {
-          vm.videos = vm.videos.concat(response.data.data);
+          var videos = response.data.data.filter(function(element) {
+            return element._id != vm.video._id;
+          });
+
+          vm.videos = vm.videos.concat(videos);
         })
         .catch(function() {
           toastr.error(null, 'Could not load videos.');
