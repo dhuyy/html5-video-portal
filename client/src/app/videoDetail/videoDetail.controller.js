@@ -21,10 +21,18 @@
     vm.getVideos = getVideos;
     vm.showMoreSideVideos = showMoreSideVideos;
 
+    /**
+     * This method runs at template initialization and loads the current video based on the "id" url param.
+     */
     function onInit() {
       vm.getVideo(AuthService.getSessionId(), $stateParams.id);
     }
 
+    /**
+     * This method accesses the server to load one video based on the videoId param.
+     * @param sessionId
+     * @param videoId
+     */
     function getVideo(sessionId, videoId) {
       VideoService.getVideo(sessionId, videoId)
         .then(function(response) {
@@ -38,6 +46,12 @@
       ;
     }
 
+    /**
+     * This method accesses the server to load a set of videos based on the "skip" and "limit" params.
+     * @param sessionId
+     * @param skip
+     * @param limit
+     */
     function getVideos(sessionId, skip, limit) {
       VideoService.getVideos(sessionId, skip, limit)
         .then(function(response) {
@@ -57,6 +71,10 @@
       ;
     }
 
+    /**
+     * This method triggers when the user clicks the "Show More" button and accesses the "getVideos" method to load
+     * more videos from the server.
+     */
     function showMoreSideVideos() {
       vm.getVideos(AuthService.getSessionId(), vm.videos.length, NUMBER_VIDEOS_TO_LOAD);
     }

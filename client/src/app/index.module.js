@@ -15,10 +15,10 @@
       'toastr'
     ]);
 
-  /*
-  *  This timeout delays the bootstrap of the application in 2 seconds in order to show the loading animation,
-  *  simulating the loading of the application on the internet.
-  */
+  /**
+   * This timeout delays the bootstrap of the application in 2 seconds in order to show the loading animation,
+   * simulating the loading of the application on the internet.
+   */
   setTimeout(function() {
     angular.bootstrap(document, ['crossoverAssignment']);
   }, 2000);

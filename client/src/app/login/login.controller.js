@@ -11,6 +11,11 @@
 
     vm.auth = auth;
 
+    /**
+     * This method requests the server to authenticate a user based on the "username" and "password" params.
+     * @param username
+     * @param password
+     */
     function auth(username, password) {
       AuthService.auth(username, password)
         .then(function(response) {
