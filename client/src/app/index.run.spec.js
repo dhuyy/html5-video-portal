@@ -4,7 +4,7 @@
   /**
    * Unit testing run block
    */
-  describe('[AuthService]', function() {
+  describe('[Run Block]', function() {
     var AuthService, VideoService, $rootScope, localStorageService, $q, logoutDeferred, ratingDeferred, $state, toastr;
 
     beforeEach(module('crossoverAssignment'));
