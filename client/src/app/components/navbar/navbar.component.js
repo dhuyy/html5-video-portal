@@ -7,6 +7,9 @@
       isLogged: '<'
     },
     controller: function ($rootScope) {
+      /**
+       * This code triggers the event "logout" to log out an user.
+       */
       function onClickLogout() {
         $rootScope.$emit('logout');
       }

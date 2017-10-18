@@ -12,6 +12,10 @@
       restrict: 'C',
       link: function(scope, element, attributes) {
         $animate.enabled(true);
+
+        /**
+         * This listener removes the DOM element and clears its state.
+         */
         $animate.leave(element.children().eq(0)).then( function() {
           element.remove();
           scope = element = attributes = null;
