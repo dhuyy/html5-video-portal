@@ -10,6 +10,8 @@
       url: '<'
     },
     controller: function ($scope, $element, $rootScope, SERVER) {
+      var previousRate = null;
+
       this.$onInit = function() {
         var video = angular.element($element).find('video');
 
@@ -27,6 +29,11 @@
       };
 
       this.onRatingClick = function() {
+        if ($scope.videoRating == 0)
+          $scope.videoRating = previousRate;
+
+        previousRate = $scope.videoRating;
+
         $rootScope.$emit('onRatingClick', {
           videoId: this.videoId,
           rating: $scope.videoRating
