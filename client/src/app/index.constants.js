@@ -4,7 +4,7 @@
   angular
     .module('crossoverAssignment')
     .constant('SERVER', {
-      'ADDRESS': 'http://localhost:3000'
+      'ADDRESS': 'crossover-assignment-angular.herokuapp.com/user/auth'
     });
 
 })();
