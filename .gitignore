@@ -1,3 +1,12 @@
+# Server
 .idea
 node_modules/*
-client/example/
+
+# Client
+client/node_modules/
+client/bower_components/
+client/coverage/
+client/.sass-cache/
+client/.idea/
+client/.tmp/
+client/dist/

@@ -22,8 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json.
 app.use(bodyParser.json());
 
-//connedting to mongoDB
+// Production
+// mongoose.connect('mongodb://' + configs.dbUser + ':' + configs.dbPassword + '@' + configs.dbHost + ':' + configs.dbPort + '/' + configs.dbName + '');
+
+// Development
 mongoose.connect('mongodb://'+configs.dbHost+'/'+configs.dbName);
+
 //populating data if DB is not already populated.
 helperFunctions.populateDb();
 
