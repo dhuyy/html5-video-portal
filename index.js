@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Production
-// mongoose.connect('mongodb://' + configs.dbUser + ':' + configs.dbPassword + '@' + configs.dbHost + ':' + configs.dbPort + '/' + configs.dbName + '');
+mongoose.connect('mongodb://' + configs.dbUser + ':' + configs.dbPassword + '@' + configs.dbHost + ':' + configs.dbPort + '/' + configs.dbName + '');
 
 // Development
-mongoose.connect('mongodb://'+configs.dbHost+'/'+configs.dbName);
+// mongoose.connect('mongodb://'+configs.dbHost+'/'+configs.dbName);
 
 //populating data if DB is not already populated.
 helperFunctions.populateDb();
